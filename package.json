@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "mocha": "^5.2.0"
+  },
+  "name": "Hipster-Coffeeshop",
+  "version": "1.0.0",
+  "description": "A Javascript Application that implements a till that can calculate tax, discounts and prints detailed receipts!",
+  "main": "index.js",
+  "repository": "https://github.com/AlfieDarko/Hipster-Coffeeshop.git",
+  "author": "Alfie Darko <me@alfiedarko.co.uk>",
+  "license": "MIT"
+}
