@@ -1,6 +1,11 @@
 {
   "dependencies": {
+    "chai": "^4.1.2",
+    "eslint-config-standard": "^11.0.0",
     "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "nyc mocha"
   },
   "name": "Hipster-Coffeeshop",
   "version": "1.0.0",
@@ -8,5 +13,12 @@
   "main": "index.js",
   "repository": "https://github.com/AlfieDarko/Hipster-Coffeeshop.git",
   "author": "Alfie Darko <me@alfiedarko.co.uk>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "nyc": "^12.0.2"
+  }
 }
