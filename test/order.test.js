@@ -11,6 +11,17 @@ describe('Order', () => {
             order.setCustomerName("James")
             expect(order.getCustomerName()).to.eql("James")
         })
+
+        describe('.getCustomerName()', () => {
+            beforeEach(() => {
+                order = new Order()
+            })
+    
+            it('gets the Customer Name as set by setCustomerName()', () => {
+                order.setCustomerName("Anna")
+                expect(order.getCustomerName()).to.eql("Anna")
+            })
+        })
     })
 
 })
