@@ -35,5 +35,17 @@ describe('Order', () => {
         })
     })
 
+    describe('.resetBasket()', () => {
+        beforeEach(() => {
+            order = new Order()
+        })
+
+        it('resets the basket back to an empty state', () => {
+            order.setBasket(["Cafe Latte", "Flat White"])
+            order.resetBasket()
+            expect(order.getBasket()).to.eql([])
+        })
+    })
+
 
 })

@@ -21,6 +21,11 @@ class Order {
     return this._basket
   }
 
+  resetBasket(){
+    this._basket.length = 0
+  }
+
+
 }
 
 module.exports = Order
