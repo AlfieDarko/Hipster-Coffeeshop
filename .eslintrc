@@ -4,15 +4,12 @@
         "ecmaVersion": 6,
          "sourceType": "module"
     },
-    "compilerOptions": {
-        "target": "ES6",
-        "module": "commonjs"
-    },
     "env": {
         "browser": true,
         "es6": true,
         "node": true,
-        "commonjs": true
+        "commonjs": true,
+        "mocha": true
     }
 
   }
