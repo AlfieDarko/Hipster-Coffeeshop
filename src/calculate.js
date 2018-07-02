@@ -23,10 +23,21 @@ class Calculate {
       );
     }
 
-    return zipItemsAndPrices(basket, totals)
-      .map(lineItem => {
+    zipItemsAndPrices(basket, totals).map(
+      lineItem => {
         lineTotals.push(`${lineItem[0]}: £${lineItem[1]}`)
-      });
+      }
+    );
+    return lineTotals
+  }
+
+  getBaseTotal(basket) {
+    let self = this
+    return basket.reduce((total, item) => {
+      if (self.products.list().hasOwnProperty(item)) {
+        return (total += self.products.list()[item])
+      }
+    }, 0)
   }
 }
 module.exports = Calculate
