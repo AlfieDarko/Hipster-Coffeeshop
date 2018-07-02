@@ -39,5 +39,30 @@ class Calculate {
       }
     }, 0)
   }
+
+  getDiscount(basket) {
+    let self = this
+    let discount
+    basket.forEach(function (element) {
+      if (
+        element.includes("Blueberry Muffin") ||
+        element.includes("Chocolate Chip Muffin") ||
+        element.includes("Muffin Of The Day")
+      ) {
+        discount = (self.returnCurrency(self.getBaseTotal(basket) / 100) * 10)
+      }
+    })
+    let discount2 = ((self.getBaseTotal(basket) / 100) * 10)
+    return this.returnCurrency(discount2)
+  }
+
+  returnCurrency(maths) {
+    return parseFloat((new Intl.NumberFormat('gb-GB', {
+      maximumSignificantDigits: 3
+    }).format(maths)))
+  }
+
 }
+
+
 module.exports = Calculate
