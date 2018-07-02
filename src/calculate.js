@@ -35,7 +35,7 @@ class Calculate {
     let self = this
     return basket.reduce((total, item) => {
       if (self.products.list().hasOwnProperty(item)) {
-        return (total += self.products.list()[item])
+        return (self.returnCurrency(total += self.products.list()[item]))
       }
     }, 0)
   }
@@ -49,11 +49,13 @@ class Calculate {
         element.includes("Chocolate Chip Muffin") ||
         element.includes("Muffin Of The Day")
       ) {
-        discount = (self.returnCurrency(self.getBaseTotal(basket) / 100) * 10)
+        discount = self.returnCurrency((self.returnCurrency(self.getBaseTotal(basket) / 100) * 10))
+      } else {
+        return
       }
     })
-    let discount2 = ((self.getBaseTotal(basket) / 100) * 10)
-    return this.returnCurrency(discount2)
+    // let discount2 = ((self.getBaseTotal(basket) / 100) * 10)
+    return  Object.is(discount, undefined) ? 0 : discount
   }
 
   returnCurrency(maths) {
@@ -62,6 +64,7 @@ class Calculate {
     }).format(maths)))
   }
 
+  
 }
 
 

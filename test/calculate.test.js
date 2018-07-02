@@ -100,6 +100,12 @@ describe('Calculate', () => {
       getBasket = ['Single Espresso', 'Cortado', 'Blueberry Muffin']
       expect(calculate.getDiscount(getBasket)).to.eql(1.07)
     })
+
+    it('returns 0 as discount amount when the basket doesnt hold a muffin', () => {
+      getBasket = ['Single Espresso', 'Cortado']
+      expect(calculate.getDiscount(getBasket)).to.eql(0)
+
+    });
   })
 
 })
