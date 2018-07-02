@@ -108,7 +108,7 @@ describe('Calculate', () => {
 
   })
 
-  describe('.getBigSpenderDiscount()', () => {
+  describe('.getSpend50Discount()', () => {
     beforeEach(() => {
       stubProductsInstance = sinon.createStubInstance(Products)
       stubProductsInstance.list = sinon.stub().returns({
@@ -129,8 +129,11 @@ describe('Calculate', () => {
         'Muffin Of The Day': 4.55
       });
     });
-    it('returns discount amount of 10% from total when basket is over £50', () => {
+    it('returns discount amount of 10% (6.64 )from total when basket is over £50 (66.40)', () => {
+      getBasket = ['Affogato', 'Tiramisu', 'Cafe Latte', 'Choc Mousse', 'Choc Mudcake', 'Cortado', 'Tiramisu', 'Flat White']
+      // Full price is £66.40
       
+      expect(calculate.getSpend50Discount(getBasket)).to.eql(6.64)
     });
   });
 

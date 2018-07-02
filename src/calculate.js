@@ -1,4 +1,5 @@
 const Products = require('./products.js')
+
 class Calculate {
   constructor(Products) {
     this.products = Products
@@ -13,8 +14,6 @@ class Calculate {
         totals.push(self.products.list()[item])
       }
     })
-
-   
 
     Calculate.zipItemsAndPrices(basket, totals).map(
       lineItem => {
@@ -43,27 +42,36 @@ class Calculate {
         element.includes("Muffin Of The Day")
       ) {
         discount = Calculate.returnCurrency((Calculate.returnCurrency(self.getBaseTotal(basket) / 100) * 10))
-      } 
+      }
     })
-    return  Object.is(discount, undefined) ? 0 : discount
+    return Object.is(discount, undefined) ? 0 : discount
   }
 
-  static returnCurrency(maths) {
-    return parseFloat((new Intl.NumberFormat('gb-GB', {
-      maximumSignificantDigits: 3
-    }).format(maths)))
+  getSpend50Discount(basket) {
+    let self = this
+    if (this.getBaseTotal(basket) >= 50) {
+      console.log(self.getBaseTotal(basket), 'base')
+      return Calculate.returnCurrency((self.getBaseTotal(basket) / 100) * 10)
+    }
+
   }
 
-  static zipItemsAndPrices(...arrays) {
-    const length = Math.min(...arrays.map(arr => arr.length));
-    return Array.from({
-        length
-      },
-      (value, index) => arrays.map(array => array[index])
-    );
-  }
+static returnCurrency(maths) {
+  return parseFloat((new Intl.NumberFormat('gb-GB', {
+    maximumSignificantDigits: 3
+  }).format(maths)))
+}
 
-  
+static zipItemsAndPrices(...arrays) {
+  const length = Math.min(...arrays.map(arr => arr.length));
+  return Array.from({
+      length
+    },
+    (value, index) => arrays.map(array => array[index])
+  );
+}
+
+
 }
 
 
