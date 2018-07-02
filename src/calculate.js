@@ -3,7 +3,13 @@ const Products = require('./products.js')
 class Calculate {
   constructor(Products) {
     this.products = Products
+    this._TAXRATE = 8.64
   }
+
+  getTaxRate(){
+    return this._TAXRATE
+  }
+
   getLineTotals(basket) {
     let totals = []
     let lineTotals = []
@@ -59,14 +65,16 @@ class Calculate {
   }
 
   getSalesTax(basket){
-    const TAXRATE = 8.64
     let amountToTax = this.getBaseTotal(basket) + this.getMuffinDiscount(basket) + this.getSpend50Discount(basket)
-    return Calculate.returnCurrency((amountToTax / 100) * TAXRATE)
+    console.log(this.getTaxRate(), 'taxxxxx')
+    return Calculate.returnCurrency((amountToTax / 100) * this.getTaxRate())
   }
 
   getGrandTotal(basket) {
     return this.getBaseTotal(basket) + this.getMuffinDiscount(basket) + this.getSpend50Discount(basket) 
   }
+
+  
 
   static returnCurrency(maths) {
     return parseFloat((new Intl.NumberFormat('gb-GB', {

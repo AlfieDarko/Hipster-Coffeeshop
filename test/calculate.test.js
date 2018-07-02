@@ -212,8 +212,12 @@ describe('Calculate', () => {
       getBasket = ['Affogato', 'Tea', 'Tiramisu', 'Choc Mousse']
       expect(calculate.getGrandTotal(getBasket)).to.eql(38.1)
     });
+  });
 
-
+  describe('.getTaxRate()', () => {
+      it('returns a TAXRATE of 8.64', () => {
+        expect(calculate.getTaxRate()).to.eql(8.64)
+      });
   });
 
 })
