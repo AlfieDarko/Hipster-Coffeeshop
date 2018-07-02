@@ -16,8 +16,16 @@ describe('Payments', () => {
 
         it('throws an error if money is not enough', () => {
             grandTotal = 30
-            expect(() => payments.payGrandTotal(20, grandTotal)).to.throw(Error, 'Not enough to make payment');
+            amount = 20
+            expect(() => payments.payGrandTotal(amount, grandTotal)).to.throw(Error, 'Not enough to make payment');
         })
+
+        it('returns true if payment is accepted', () => {
+            grandTotal = 30
+            amount = 40
+            expect(payments.payGrandTotal(amount, grandTotal)).to.eql(true)
+        });
+
     });
 });
 
