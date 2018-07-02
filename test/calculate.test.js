@@ -74,7 +74,7 @@ describe('Calculate', () => {
 
   });
 
-  describe('.getDiscount()', () => {
+  describe('.getMuffinDiscount()', () => {
     beforeEach(() => {
       stubProductsInstance = sinon.createStubInstance(Products)
       stubProductsInstance.list = sinon.stub().returns({
@@ -98,12 +98,12 @@ describe('Calculate', () => {
 
     it('returns discount amount of 10% from total when basket holds a muffin Item', () => {
       getBasket = ['Single Espresso', 'Cortado', 'Blueberry Muffin']
-      expect(calculate.getDiscount(getBasket)).to.eql(1.07)
+      expect(calculate.getMuffinDiscount(getBasket)).to.eql(1.07)
     })
 
     it('returns 0 as discount amount when the basket doesnt hold a muffin', () => {
       getBasket = ['Single Espresso', 'Cortado']
-      expect(calculate.getDiscount(getBasket)).to.eql(0)
+      expect(calculate.getMuffinDiscount(getBasket)).to.eql(0)
 
     });
   })

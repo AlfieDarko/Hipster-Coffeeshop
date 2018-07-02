@@ -40,7 +40,7 @@ class Calculate {
     }, 0)
   }
 
-  getDiscount(basket) {
+  getMuffinDiscount(basket) {
     let self = this
     let discount
     basket.forEach(function (element) {
@@ -50,11 +50,8 @@ class Calculate {
         element.includes("Muffin Of The Day")
       ) {
         discount = self.returnCurrency((self.returnCurrency(self.getBaseTotal(basket) / 100) * 10))
-      } else {
-        return
-      }
+      } 
     })
-    // let discount2 = ((self.getBaseTotal(basket) / 100) * 10)
     return  Object.is(discount, undefined) ? 0 : discount
   }
 
