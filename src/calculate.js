@@ -41,7 +41,9 @@ class Calculate {
         element.includes("Chocolate Chip Muffin") ||
         element.includes("Muffin Of The Day")
       ) {
-        discount = Calculate.returnCurrency((Calculate.returnCurrency(self.getBaseTotal(basket) / 100) * 10))
+        discount = Calculate.returnCurrency(
+          (Calculate.returnCurrency(self.getBaseTotal(basket) / 100) * 10)
+        )
       }
     })
     return Object.is(discount, undefined) ? 0 : discount
@@ -58,26 +60,29 @@ class Calculate {
 
   getSalesTax(basket){
     const TAXRATE = 8.64
-
     let amountToTax = this.getBaseTotal(basket) + this.getMuffinDiscount(basket) + this.getSpend50Discount(basket)
-
+    console.log(amountToTax, 'aount to tax!')
     return Calculate.returnCurrency((amountToTax / 100) * TAXRATE)
   }
 
-static returnCurrency(maths) {
-  return parseFloat((new Intl.NumberFormat('gb-GB', {
-    maximumSignificantDigits: 3
-  }).format(maths)))
-}
+  getGrandTotal(basket) {
+    return this.getBaseTotal(basket) + this.getMuffinDiscount(basket) + this.getSpend50Discount(basket) 
+  }
 
-static zipItemsAndPrices(...arrays) {
-  const length = Math.min(...arrays.map(arr => arr.length));
-  return Array.from({
-      length
-    },
-    (value, index) => arrays.map(array => array[index])
-  );
-}
+  static returnCurrency(maths) {
+    return parseFloat((new Intl.NumberFormat('gb-GB', {
+      maximumSignificantDigits: 3
+    }).format(maths)))
+  }
+
+  static zipItemsAndPrices(...arrays) {
+    const length = Math.min(...arrays.map(arr => arr.length));
+    return Array.from({
+        length
+      },
+      (value, index) => arrays.map(array => array[index])
+    );
+  }
 
 
 }
