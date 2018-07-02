@@ -49,11 +49,19 @@ class Calculate {
 
   getSpend50Discount(basket) {
     let self = this
+    let discount
     if (this.getBaseTotal(basket) >= 50) {
-      console.log(self.getBaseTotal(basket), 'base')
-      return Calculate.returnCurrency((self.getBaseTotal(basket) / 100) * 10)
+      discount = Calculate.returnCurrency((self.getBaseTotal(basket) / 100) * 5)
     }
+    return Object.is(discount, undefined) ? 0 : discount
+  }
 
+  getSalesTax(basket){
+    const TAXRATE = 8.64
+
+    let amountToTax = this.getBaseTotal(basket) + this.getMuffinDiscount(basket) + this.getSpend50Discount(basket)
+
+    return Calculate.returnCurrency((amountToTax / 100) * TAXRATE)
   }
 
 static returnCurrency(maths) {

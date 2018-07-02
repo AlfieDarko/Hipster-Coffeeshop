@@ -129,12 +129,79 @@ describe('Calculate', () => {
         'Muffin Of The Day': 4.55
       });
     });
+
     it('returns discount amount of 10% (6.64 )from total when basket is over £50 (66.40)', () => {
       getBasket = ['Affogato', 'Tiramisu', 'Cafe Latte', 'Choc Mousse', 'Choc Mudcake', 'Cortado', 'Tiramisu', 'Flat White']
       // Full price is £66.40
-      
-      expect(calculate.getSpend50Discount(getBasket)).to.eql(6.64)
+      expect(calculate.getSpend50Discount(getBasket)).to.eql(3.32)
     });
   });
+
+  describe('.getSalesTax()', () => {
+    beforeEach(() => {
+      stubProductsInstance = sinon.createStubInstance(Products)
+      stubProductsInstance.list = sinon.stub().returns({
+        'Cafe Latte': 4.75,
+        'Flat White': 4.75,
+        'Cappucino': 3.85,
+        'Single Espresso': 2.05,
+        'Double Espresso': 3.75,
+        'Americano': 3.75,
+        'Cortado': 4.55,
+        'Tea': 3.65,
+        'Choc Mudcake': 6.4,
+        'Choc Mousse': 8.2,
+        'Affogato': 14.8,
+        'Tiramisu': 11.4,
+        'Blueberry Muffin': 4.05,
+        'Chocolate Chip Muffin': 4.05,
+        'Muffin Of The Day': 4.55
+      });
+      calculate = new Calculate(stubProductsInstance)
+
+    });
+
+    it('returns the amount of Tax to be paid on multiple items', () => {
+      getBasket = ['Affogato', 'Tiramisu', 'Cafe Latte', 'Choc Mousse', 'Choc Mudcake', 'Cortado', 'Tiramisu', 'Flat White']
+
+      expect(calculate.getSalesTax(getBasket)).to.eql(6.02)
+    });
+
+    it('returns the amount of Tax to be paid on a single items', () => {
+      getBasket = ['Affogato']
+
+      expect(calculate.getSalesTax(getBasket)).to.eql(1.28)
+    });
+
+  });
+
+  // describe('.getSalesTax()', () => {
+  //   beforeEach(() => {
+  //     stubProductsInstance = sinon.createStubInstance(Products)
+  //     stubProductsInstance.list = sinon.stub().returns({
+  //       'Cafe Latte': 4.75,
+  //       'Flat White': 4.75,
+  //       'Cappucino': 3.85,
+  //       'Single Espresso': 2.05,
+  //       'Double Espresso': 3.75,
+  //       'Americano': 3.75,
+  //       'Cortado': 4.55,
+  //       'Tea': 3.65,
+  //       'Choc Mudcake': 6.4,
+  //       'Choc Mousse': 8.2,
+  //       'Affogato': 14.8,
+  //       'Tiramisu': 11.4,
+  //       'Blueberry Muffin': 4.05,
+  //       'Chocolate Chip Muffin': 4.05,
+  //       'Muffin Of The Day': 4.55
+  //     });
+  //   });
+
+  //   it('returns the amount of Tax to be paid', () => {
+  //     getBasket = ['Affogato', 'Tiramisu', 'Cafe Latte', 'Choc Mousse', 'Choc Mudcake', 'Cortado', 'Tiramisu', 'Flat White']
+
+  //     expect(calculate.getSalesTax()).to.eql(5.7)
+  //   });
+  // });
 
 })
