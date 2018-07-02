@@ -14,16 +14,9 @@ class Calculate {
       }
     })
 
-    function zipItemsAndPrices(...arrays) {
-      const length = Math.min(...arrays.map(arr => arr.length));
-      return Array.from({
-          length
-        },
-        (value, index) => arrays.map(array => array[index])
-      );
-    }
+   
 
-    zipItemsAndPrices(basket, totals).map(
+    Calculate.zipItemsAndPrices(basket, totals).map(
       lineItem => {
         lineTotals.push(`${lineItem[0]}: £${lineItem[1]}`)
       }
@@ -35,7 +28,7 @@ class Calculate {
     let self = this
     return basket.reduce((total, item) => {
       if (self.products.list().hasOwnProperty(item)) {
-        return (self.returnCurrency(total += self.products.list()[item]))
+        return (Calculate.returnCurrency(total += self.products.list()[item]))
       }
     }, 0)
   }
@@ -49,16 +42,25 @@ class Calculate {
         element.includes("Chocolate Chip Muffin") ||
         element.includes("Muffin Of The Day")
       ) {
-        discount = self.returnCurrency((self.returnCurrency(self.getBaseTotal(basket) / 100) * 10))
+        discount = Calculate.returnCurrency((Calculate.returnCurrency(self.getBaseTotal(basket) / 100) * 10))
       } 
     })
     return  Object.is(discount, undefined) ? 0 : discount
   }
 
-  returnCurrency(maths) {
+  static returnCurrency(maths) {
     return parseFloat((new Intl.NumberFormat('gb-GB', {
       maximumSignificantDigits: 3
     }).format(maths)))
+  }
+
+  static zipItemsAndPrices(...arrays) {
+    const length = Math.min(...arrays.map(arr => arr.length));
+    return Array.from({
+        length
+      },
+      (value, index) => arrays.map(array => array[index])
+    );
   }
 
   
