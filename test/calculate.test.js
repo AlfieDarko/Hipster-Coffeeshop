@@ -197,11 +197,18 @@ describe('Calculate', () => {
       });
     });
 
-    it('returns the grand total', () => {
+    it('returns the grand total of one item', () => {
       getBasket = ['Affogato']
 
       expect(calculate.getGrandTotal(getBasket)).to.eql(14.8)
     });
+
+    it('returns the grand total of two identical', () => {
+      getBasket = ['Affogato', 'Affogato']
+
+      expect(calculate.getGrandTotal(getBasket)).to.eql(29.6)
+    });
+
   });
 
 })
