@@ -61,7 +61,6 @@ class Calculate {
   getSalesTax(basket){
     const TAXRATE = 8.64
     let amountToTax = this.getBaseTotal(basket) + this.getMuffinDiscount(basket) + this.getSpend50Discount(basket)
-    console.log(amountToTax, 'aount to tax!')
     return Calculate.returnCurrency((amountToTax / 100) * TAXRATE)
   }
 

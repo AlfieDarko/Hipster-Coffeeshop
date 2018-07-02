@@ -1,58 +1,58 @@
 const Order = require('../src/order.js')
 const expect = require('chai').expect
 describe('Order', () => {
-  let order
-  describe('.setCustomerName()', () => {
-    beforeEach(() => {
-      order = new Order()
+    let order
+    describe('.setCustomerName()', () => {
+        beforeEach(() => {
+            order = new Order()
+        })
+
+        it('sets the Customer Name of this order as James', () => {
+            order.setCustomerName('James')
+            expect(order.getCustomerName()).to.eql('James')
+        })
+    })
+    describe('.getCustomerName()', () => {
+        beforeEach(() => {
+            order = new Order()
+        })
+
+        it('gets the Customer Name as set by setCustomerName()', () => {
+            order.setCustomerName('Anna')
+            expect(order.getCustomerName()).to.eql('Anna')
+        })
     })
 
-    it('sets the Customer Name of this order as James', () => {
-      order.setCustomerName('James')
-      expect(order.getCustomerName()).to.eql('James')
-    })
-  })
-  describe('.getCustomerName()', () => {
-    beforeEach(() => {
-      order = new Order()
+    describe('.setBasket()', () => {
+        beforeEach(() => {
+            order = new Order()
+        })
+
+        it('sets basket with items', () => {
+            order.setBasket(['Cafe Latte'])
+            expect(order.getBasket()).to.eql(['Cafe Latte'])
+        })
     })
 
-    it('gets the Customer Name as set by setCustomerName()', () => {
-      order.setCustomerName('Anna')
-      expect(order.getCustomerName()).to.eql('Anna')
-    })
-  })
+    describe('.resetBasket()', () => {
+        beforeEach(() => {
+            order = new Order()
+        })
 
-  describe('.setBasket()', () => {
-    beforeEach(() => {
-      order = new Order()
-    })
-
-    it('sets basket with items', () => {
-      order.setBasket(['Cafe Latte'])
-      expect(order.getBasket()).to.eql(['Cafe Latte'])
-    })
-  })
-
-  describe('.resetBasket()', () => {
-    beforeEach(() => {
-      order = new Order()
+        it('resets the basket back to an empty state', () => {
+            order.setBasket(['Cafe Latte', 'Flat White'])
+            order.resetBasket()
+            expect(order.getBasket()).to.eql([])
+        })
     })
 
-    it('resets the basket back to an empty state', () => {
-      order.setBasket(['Cafe Latte', 'Flat White'])
-      order.resetBasket()
-      expect(order.getBasket()).to.eql([])
+    describe('.resetCustomerName()', () => {
+        beforeEach(() => {
+            order = new Order()
+        })
+        it('resets the name property back to null', () => {
+            order.resetCustomerName()
+            expect(order.getCustomerName()).to.eql(null)
+        })
     })
-  })
-
-  describe('.resetCustomerName()', () => {
-    beforeEach(() => {
-      order = new Order()
-    })
-    it('resets the name property back to null', () => {
-      order.resetCustomerName()
-      expect(order.getCustomerName()).to.eql(null)
-    })
-  })
 })
