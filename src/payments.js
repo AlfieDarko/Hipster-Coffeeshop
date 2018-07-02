@@ -11,7 +11,6 @@ class Payments {
     }
 
     getChange(amount, grandTotal) {
-        console.log(amount - grandTotal)
         return amount - grandTotal
     }
 }

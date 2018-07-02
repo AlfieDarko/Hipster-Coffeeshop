@@ -25,7 +25,19 @@ describe('Payments', () => {
             amount = 40
             expect(payments.payGrandTotal(amount, grandTotal)).to.eql(true)
         });
+    });
 
+    describe('.getChange()', () => {
+
+        beforeEach(() => {
+            payments = new Payments()
+        });
+
+        it('returns the correct amount of change of a payment', () => {
+            grandTotal = 30
+            amount = 40
+            expect(payments.getChange(amount, grandTotal)).to.eql(10)
+        });
     });
 });
 
