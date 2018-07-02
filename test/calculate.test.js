@@ -205,9 +205,14 @@ describe('Calculate', () => {
 
     it('returns the grand total of two identical', () => {
       getBasket = ['Affogato', 'Affogato']
-
       expect(calculate.getGrandTotal(getBasket)).to.eql(29.6)
     });
+
+    it('returns the grand total of multiple different items', () => {
+      getBasket = ['Affogato', 'Tea', 'Tiramisu', 'Choc Mousse']
+      expect(calculate.getGrandTotal(getBasket)).to.eql(38.1)
+    });
+
 
   });
 
