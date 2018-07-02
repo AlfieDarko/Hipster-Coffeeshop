@@ -220,4 +220,12 @@ describe('Calculate', () => {
       });
   });
 
+  describe('.setTaxRate()', () => {
+    it('sets a TAXRATE of 10', () => {
+      calculate.setTaxRate(10)
+      expect(calculate.getTaxRate()).to.eql(10)
+    });
+});
+
+
 })

@@ -10,6 +10,10 @@ class Calculate {
     return this._TAXRATE
   }
 
+  setTaxRate(newTaxRate){
+    this._TAXRATE = newTaxRate
+  }
+
   getLineTotals(basket) {
     let totals = []
     let lineTotals = []
