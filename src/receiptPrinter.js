@@ -13,10 +13,13 @@ class ReceiptPrinter {
         this.addMuffinDiscountToReceipt(basket)
         this.addBigSpenderDiscountToReceipt(basket)
         this.addSalesTaxToReceipt(basket)
+        this.addGrandTotalToReceipt(basket)
         return this.receipt
         // return receipt.reduce((acc, val) => acc.concat(val), [])
     }
-
+    addGrandTotalToReceipt(basket){ 
+        this.receipt.grandTotal = this.calculate.getGrandTotal(basket)
+    }
      addLineTotalsToReceipt(basket) {
         this.receipt.lineTotals = this.calculate.getLineTotals(basket)
 

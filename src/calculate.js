@@ -90,7 +90,7 @@ class Calculate {
     }
 
     getGrandTotal(basket) {
-        return this.getBaseTotal(basket) + this.getMuffinDiscount(basket) + this.getSpend50Discount(basket)
+        return Calculate.returnCurrency(this.getBaseTotal(basket) + this.getMuffinDiscount(basket) + this.getSpend50Discount(basket))
     }
 
     static returnCurrency(maths) {
