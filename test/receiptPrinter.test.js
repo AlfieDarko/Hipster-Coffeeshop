@@ -25,7 +25,7 @@ describe('ReceiptPrinter', () => {
         it('returns an array with the line totals', () => {
             console.log(calculateStub)
             getBasket = ['Cafe Latte']
-            expect(receiptPrinter.getReceipt(getBasket)).to.eql(["Cafe Latte: £4.75"])
+            expect(receiptPrinter.getReceipt(getBasket)).to.be.an('array').that.includes("Cafe Latte: £4.75")
         });
 
 
