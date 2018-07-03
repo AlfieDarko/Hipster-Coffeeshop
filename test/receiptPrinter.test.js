@@ -53,10 +53,8 @@ describe('ReceiptPrinter', () => {
         describe('>> Spend50 Discount', () => {
             before(() => {
                 calculateStub = sinon.createStubInstance(Calculate)
-                // mockLineTotals = sinon.stub(Calculate.prototype, 'getLineTotals').returns(["Cafe Latte: £4.75"])
                 mockSpend50Discount = sinon.stub(Calculate.prototype, 'getSpend50Discount').returns(51)
                 receiptPrinter = new ReceiptPrinter(new Calculate())
-    
             });
             it('returns an array including the big spender discount', () => {
                 getBasket = ['Cafe Latte', 'Cafe Latte','Cafe Latte','Cafe Latte',
@@ -68,7 +66,10 @@ describe('ReceiptPrinter', () => {
             after(() => {
                 mockSpend50Discount.restore()
             });
-    
+        });
+
+        describe('', () => {
+            
         });
 
 

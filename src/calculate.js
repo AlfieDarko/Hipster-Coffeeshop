@@ -21,7 +21,6 @@ class Calculate {
 
     this._TAXRATE = 8.64
   }
-
   getTaxRate() {
     return this._TAXRATE
   }
@@ -61,17 +60,19 @@ class Calculate {
   getMuffinDiscount(basket) {
     let self = this
     let discount
-    basket.forEach(function (element) {
-      if (
-        element.includes("Blueberry Muffin") ||
-        element.includes("Chocolate Chip Muffin") ||
-        element.includes("Muffin Of The Day")
-      ) {
-        discount = Calculate.returnCurrency(
-          (Calculate.returnCurrency(self.getBaseTotal(basket) / 100) * 10)
-        )
-      }
-    })
+
+    let discountedItems = ['Blueberry Muffin',
+    'Chocolate Chip Muffin',
+    'Muffin Of The Day']
+
+    discountedItems.some(
+      muffin => basket.includes(muffin)
+    ) ? ( discount = Calculate.returnCurrency(
+            ( Calculate.returnCurrency(
+              self.getBaseTotal(basket) / 100) * 10
+            ) 
+        ) 
+    ) : ( discount )
     return Object.is(discount, undefined) ? 0 : discount
   }
 
@@ -107,6 +108,9 @@ class Calculate {
       (value, index) => arrays.map(array => array[index])
     );
   }
+
+   
+
 
 
 }
