@@ -1,18 +1,31 @@
 const ReceiptPrinter = require('../src/receiptPrinter')
 const Calculate = require('../src/calculate')
-const Products = require('../src/products')
 const expect = require('chai').expect
 const sinon = require('sinon')
 
 describe('ReceiptPrinter', () => {
     let receiptPrinter
+    let calculateStub
+    let mockLineTotals
     describe('.getReceipt()', () => {
         beforeEach(() => {
-            receiptPrinter = new ReceiptPrinter(new Calculate(new Products()))
+            calculateStub = sinon.createStubInstance(Calculate)
+            mockLineTotals = sinon.stub(Calculate.prototype, 'getLineTotals').returns(["Cafe Latte: £4.75"])
+            receiptPrinter = new ReceiptPrinter(new Calculate())
+        });
+        afterEach(() => {
+            mockLineTotals.restore()
         });
         it('returns an array', () => {
+            console.log(calculateStub)
             getBasket = ['Cafe Latte']
             expect(receiptPrinter.getReceipt(getBasket)).to.be.an('array')
+        });
+
+        it('returns an array with the line totals', () => {
+            console.log(calculateStub)
+            getBasket = ['Cafe Latte']
+            expect(receiptPrinter.getReceipt(getBasket)).to.eql(["Cafe Latte: £4.75"])
         });
 
 

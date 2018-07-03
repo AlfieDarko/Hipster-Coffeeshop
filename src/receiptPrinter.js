@@ -8,7 +8,7 @@ class ReceiptPrinter {
     getReceipt(basket){ 
         let receipt = []
         receipt.push(this.calculate.getLineTotals(basket))
-        return receipt
+        return receipt.reduce((acc, val) => acc.concat(val), [])
     }
 }
 
