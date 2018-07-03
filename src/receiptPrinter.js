@@ -1,11 +1,14 @@
+const calculate = require('./calculate')
+
 class ReceiptPrinter {
-    // constructor(calculate) {
-    //     this.calculate = calculate
-    // }
+    constructor(calculate) {
+        this.calculate = calculate
+    }
 
-    getReceipt(){ 
-
-        return []
+    getReceipt(basket){ 
+        let receipt = []
+        receipt.push(this.calculate.getLineTotals(basket))
+        return receipt
     }
 }
 
