@@ -1,5 +1,3 @@
-import calculate from './calculate.js'
-
 class ReceiptPrinter {
     constructor(calculate) {
         this.calculate = calculate
