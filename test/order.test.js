@@ -1,18 +1,22 @@
-const Order = require('../src/order.js')
-const expect = require('chai').expect
+import Order from '../public/src/order.js';
+import { expect } from 'chai';
 describe('Order', () => {
     let order
     describe('.setCustomerName()', () => {
+        let order
         beforeEach(() => {
             order = new Order()
+
         })
 
         it('sets the Customer Name of this order as James', () => {
+
             order.setCustomerName('James')
             expect(order.getCustomerName()).to.eql('James')
         })
     })
     describe('.getCustomerName()', () => {
+        let order
         beforeEach(() => {
             order = new Order()
         })

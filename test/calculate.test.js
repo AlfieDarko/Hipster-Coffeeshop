@@ -1,10 +1,10 @@
-const Calculate = require('../src/calculate.js')
-const expect = require('chai').expect
-const sinon = require('sinon')
+import Calculate from '../public/src/calculate.js';
+import { expect } from 'chai';
+import sinon from 'sinon';
 
 describe('Calculate', () => {
   let calculate
-  let basket
+  let getBasket
   let stubProducts
   describe('.getLineTotals()', () => {
     beforeEach(() => {
@@ -69,7 +69,7 @@ describe('Calculate', () => {
   });
 
   describe('.getSalesTax()', () => {
-
+    let getBasket 
     calculate = new Calculate()
 
     });
@@ -89,6 +89,8 @@ describe('Calculate', () => {
   });
 
   describe('.getGrandTotal()', () => {
+    let calculate
+    let getBasket
     beforeEach(() => {
       calculate = new Calculate()
 
@@ -112,6 +114,7 @@ describe('Calculate', () => {
   });
 
   describe('.getTaxRate()', () => {
+    let calculate
     beforeEach(() => {
       calculate = new Calculate()
 
@@ -122,6 +125,7 @@ describe('Calculate', () => {
   });
 
   describe('.setTaxRate()', () => {
+    let calculate
     beforeEach(() => {
       calculate = new Calculate()
 

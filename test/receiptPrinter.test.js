@@ -1,23 +1,27 @@
-const ReceiptPrinter = require('../src/receiptPrinter')
-const Calculate = require('../src/calculate')
-const expect = require('chai').expect
-const sinon = require('sinon')
+import ReceiptPrinter from '../public/src/receiptPrinter';
+import Calculate, { prototype } from '../public/src/calculate';
+import { expect } from 'chai';
+import { stub, createStubInstance } from 'sinon';
 
 
 describe('ReceiptPrinter', () => {
+    let calculate
     let receiptPrinter
     let calculateStub
     let mockLineTotals
+    let mockGetGrandTotal
+    let getBasket
     describe('.getReceipt()', () => {
 
         describe('> LineTotals', () => {
             beforeEach(() => {
                 receiptPrinter = new ReceiptPrinter(new Calculate())
-                mockLineTotals = sinon.stub(Calculate.prototype, 'getLineTotals').returns(['Cafe Latte: £4.75'])
-                mockGetGrandTotal = sinon.stub(Calculate.prototype, 'getGrandTotal').returns(4.75)
+                mockLineTotals = stub(Calculate.prototype, 'getLineTotals').returns(['Cafe Latte: £4.75'])
+                mockGetGrandTotal = stub(Calculate.prototype, 'getGrandTotal').returns(4.75)
             });
             after(() => {
                 mockLineTotals.restore()
+                mockGetGrandTotal.restore()
             });
 
             it('returns an object with the line totals', () => {
@@ -32,13 +36,14 @@ describe('ReceiptPrinter', () => {
 
 
         describe('> Muffin Discount', () => {
+            let mockMuffinDiscount
+            let mockGetGrandTotal
             beforeEach(() => {
                 receiptPrinter = new ReceiptPrinter(new Calculate())
-                mockMuffinDiscount = sinon.stub(Calculate.prototype, 'getMuffinDiscount').returns(3.40)
-                mockLineTotals = sinon.stub(Calculate.prototype, 'getLineTotals').returns(['Cafe Latte', 'Chocolate Chip Muffin'])
-                mockGetGrandTotal.restore()
+                mockMuffinDiscount = stub(Calculate.prototype, 'getMuffinDiscount').returns(3.40)
+                mockLineTotals = stub(Calculate.prototype, 'getLineTotals').returns(['Cafe Latte', 'Chocolate Chip Muffin'])
 
-                mockGetGrandTotal = sinon.stub(Calculate.prototype, 'getGrandTotal').returns(12.2)
+                mockGetGrandTotal = stub(Calculate.prototype, 'getGrandTotal').returns(12.2)
 
             });
             it('returns an object including muffin discount if it is included', () => {
@@ -60,11 +65,13 @@ describe('ReceiptPrinter', () => {
         });
 
         describe('> Spend Over 50 Discount', () => {
+            let mockSpend50Discount
+            let mockGetGrandTotal
             beforeEach(() => {
-                calculateStub = sinon.createStubInstance(Calculate)
-                mockSpend50Discount = sinon.stub(Calculate.prototype, 'getSpend50Discount').returns(51)
+                calculateStub = createStubInstance(Calculate)
+                mockSpend50Discount = stub(Calculate.prototype, 'getSpend50Discount').returns(51)
                 receiptPrinter = new ReceiptPrinter(new Calculate())
-                mockGetGrandTotal = sinon.stub(Calculate.prototype, 'getGrandTotal').returns(118)
+                mockGetGrandTotal = stub(Calculate.prototype, 'getGrandTotal').returns(128.20)
 
             });
             it('returns an object including the big spender discount', () => {
@@ -91,7 +98,7 @@ describe('ReceiptPrinter', () => {
                         ],
                         bigSpendDiscount: 'Hey Big Spender! %5 Discount!',
                         salesTax: 10.2,
-                        grandTotal: 118
+                        grandTotal: 128.20
 
                     })
             });
@@ -102,11 +109,14 @@ describe('ReceiptPrinter', () => {
         });
 
         describe('> Tax Amount', () => {
+            let mockGetTaxRate
+            let mockGetSalesTax
+            let mockGetGrandTotal
             before(() => {
-                calculateStub = sinon.createStubInstance(Calculate)
-                mockGetTaxRate = sinon.stub(Calculate.prototype, 'getTaxRate').returns(8.64)
-                mockGetSalesTax = sinon.stub(Calculate.prototype, 'getSalesTax').returns(1.51)
-                mockGetGrandTotal = sinon.stub(Calculate.prototype, 'getGrandTotal').returns(9.5)
+                calculateStub = createStubInstance(Calculate)
+                mockGetTaxRate = stub(Calculate.prototype, 'getTaxRate').returns(8.64)
+                mockGetSalesTax = stub(Calculate.prototype, 'getSalesTax').returns(1.51)
+                mockGetGrandTotal = stub(Calculate.prototype, 'getGrandTotal').returns(11.01)
 
                 receiptPrinter = new ReceiptPrinter(new Calculate())
             });
@@ -116,7 +126,7 @@ describe('ReceiptPrinter', () => {
                     .to.be.an('object').to.eql({
                         lineTotals: ['Cafe Latte: £4.75', 'Cafe Latte: £4.75'],
                         salesTax: 1.51,
-                        grandTotal: 9.5
+                        grandTotal: 11.01
 
                     })
             });
@@ -128,11 +138,15 @@ describe('ReceiptPrinter', () => {
         });
 
         describe('> Grand Total', () => {
+            let mockGetTaxRate
+            let mockGetSalesTax
+            let mockGetGrandTotal
             before(() => {
-                calculateStub = sinon.createStubInstance(Calculate)
-                mockGetTaxRate = sinon.stub(Calculate.prototype, 'getTaxRate').returns(8.64)
-                mockGetSalesTax = sinon.stub(Calculate.prototype, 'getSalesTax').returns(1.51)
-                mockGetGrandTotal = sinon.stub(Calculate.prototype, 'getGrandTotal').returns(9.5)
+
+                calculateStub = createStubInstance(Calculate)
+                mockGetTaxRate = stub(Calculate.prototype, 'getTaxRate').returns(8.64)
+                mockGetSalesTax = stub(Calculate.prototype, 'getSalesTax').returns(1.51)
+                mockGetGrandTotal = stub(Calculate.prototype, 'getGrandTotal').returns(11.01)
 
                 receiptPrinter = new ReceiptPrinter(new Calculate())
             });
@@ -143,7 +157,7 @@ describe('ReceiptPrinter', () => {
                     .to.be.an('object').to.eql({
                         lineTotals: ['Cafe Latte: £4.75', 'Cafe Latte: £4.75'],
                         salesTax: 1.51, 
-                        grandTotal: 9.5
+                        grandTotal: 11.01
                     })
             });
             after(() => {

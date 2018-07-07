@@ -110,4 +110,4 @@ class Calculate {
 }
 
 
-module.exports = Calculate
+export default Calculate

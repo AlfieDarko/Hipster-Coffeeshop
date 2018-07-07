@@ -1,10 +1,11 @@
-const Payments = require('../src/payments.js');
-const expect = require('chai').expect
-const sinon = require('sinon')
+import Payments from '../public/src/payments.js';
+import { expect } from 'chai';
+import sinon from 'sinon';
 
 describe('Payments', () => {
     let payments
     let grandTotal
+    let amount
     describe('.payGrandTotal()', () => {
         beforeEach(() => {
             payments = new Payments()

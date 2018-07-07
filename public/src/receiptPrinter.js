@@ -1,4 +1,4 @@
-const calculate = require('./calculate')
+import calculate from './calculate.js'
 
 class ReceiptPrinter {
     constructor(calculate) {
@@ -52,4 +52,4 @@ class ReceiptPrinter {
     }
 }
 
-module.exports = ReceiptPrinter;
+export default ReceiptPrinter;

@@ -15,4 +15,4 @@ class Payments {
     }
 }
 
-module.exports = Payments;
+export default Payments;
