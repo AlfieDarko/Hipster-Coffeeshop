@@ -44,8 +44,8 @@ describe('Calculate', () => {
     });
 
     it('returns discount amount of 10% from total when basket holds a muffin Item', () => {
-      getBasket = ['Single Espresso', 'Cortado', 'Blueberry Muffin']
-      expect(calculate.getMuffinDiscount(getBasket)).to.eql(1.07)
+      getBasket = ['Single Espresso', 'Cortado', 'Blueberry Muffin', 'Flat White']
+      expect(calculate.getMuffinDiscount(getBasket)).to.eql(1.55)
     })
 
     it('returns 0 as discount amount when the basket doesnt hold a muffin', () => {
