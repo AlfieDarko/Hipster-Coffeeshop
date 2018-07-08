@@ -1,1 +1,2 @@
 [![Build Status](https://travis-ci.org/AlfieDarko/Hipster-Coffeeshop.svg?branch=devTillClass)](https://travis-ci.org/AlfieDarko/Hipster-Coffeeshop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2970c8c7a9e776e19e83/maintainability)](https://codeclimate.com/github/AlfieDarko/Hipster-Coffeeshop/maintainability)
