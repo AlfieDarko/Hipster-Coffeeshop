@@ -152,7 +152,6 @@ describe('ReceiptPrinter', () => {
             });
             it('returns an object including the grand Total', () => {
                 getBasket = ['Cafe Latte', 'Cafe Latte']
-                console.log(receiptPrinter.getReceipt(getBasket))
                 expect(receiptPrinter.getReceipt(getBasket))
                     .to.be.an('object').to.eql({
                         lineTotals: ['Cafe Latte: £4.75', 'Cafe Latte: £4.75'],

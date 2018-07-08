@@ -69,7 +69,8 @@ class Calculate {
         ) ? (discount = Calculate.returnCurrency(
             (Calculate.returnCurrency(
                 self.getBaseTotal(basket) / 100) * 10)
-        )) : (discount )
+        )) : (discount)
+
         return Object.is(discount, undefined) ? 0 : discount
     }
 
