@@ -21,7 +21,6 @@ describe('Till', () => {
                 till = new Till(calculate, order, payments, receiptPrinter)
             });
             it('gets the customers name from the order class', () => {
-                console.log(till)
                 till.setCustomerName('Jane')
                 expect(till.getCustomerName()).to.eql('Jane')
             });

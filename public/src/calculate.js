@@ -69,8 +69,8 @@ class Calculate {
         ) ? (discount = Calculate.returnCurrency(
             (Calculate.returnCurrency(
                 self.getBaseTotal(basket) / 100) * 10)
-        )) : (discount )
-        console.log(discount)
+        )) : (discount)
+
         return Object.is(discount, undefined) ? 0 : discount
     }
 
@@ -78,8 +78,6 @@ class Calculate {
         let self = this
         let discount
         if (this.getBaseTotal(basket) >= 50) {
-            console.log((self.getBaseTotal(basket) / 100) * 5);
-            
             discount = Calculate.returnCurrency(
                 (self.getBaseTotal(basket) / 100) * 5
             )
