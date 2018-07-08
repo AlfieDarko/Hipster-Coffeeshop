@@ -12,6 +12,7 @@
   "scripts": {
     "test": "nyc mocha  --compilers js:babel-core/register ./spec/*.spec.js",
     "featuretest": "nyc mocha --compilers js:babel-core/register ./spec/features/*.spec.js",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "develop": "webpack --mode development --watch",
     "build": "webpack --mode production",
     "start": "node ./start.js"
