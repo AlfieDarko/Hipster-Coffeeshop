@@ -18,13 +18,24 @@ class Buttons {
       items.push($(selectedItem).val());
     });
     this.till.order.setBasket(items);
+    this.displayCartItems();
+  }
 
+  displayCartItems() {
     this.till.getBasket().forEach(function(item) {
       let option = document.createElement("option");
       option.value = item;
       option.textContent = item;
       document.getElementById("cart-with-items").appendChild(option);
     });
+  }
+
+  clearCart() {
+    this.till.resetBasket();
+    $("#cart-with-items")
+      .find("option")
+      .remove()
+      .end();
   }
 }
 

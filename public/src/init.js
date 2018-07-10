@@ -22,5 +22,9 @@ $(document).ready(function() {
   $("#add-to-cart-button").click(function() {
     buttons.addToCart();
   });
+
+  $("#clear-cart-button").click(function() {
+    buttons.clearCart();
+  });
 });
 console.log("drogba");

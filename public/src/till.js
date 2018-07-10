@@ -21,6 +21,10 @@ class Till {
   getBasket() {
     return this.order.getBasket();
   }
+
+  resetBasket() {
+    this.order.resetBasket();
+  }
 }
 
 export default Till;
