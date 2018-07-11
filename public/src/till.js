@@ -14,8 +14,8 @@ class Till {
     this.order.setCustomerName(name);
   }
 
-  setBasket(food) {
-    this.order.setBasket(food);
+  setBasket(arrayOfProducts) {
+    this.order.setBasket(arrayOfProducts);
   }
 
   getBasket() {
@@ -24,6 +24,10 @@ class Till {
 
   resetBasket() {
     this.order.resetBasket();
+  }
+
+  getGrandTotal(basket) {
+    return this.calculate.getGrandTotal(basket);
   }
 }
 

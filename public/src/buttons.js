@@ -6,7 +6,6 @@ class Buttons {
   addName(name) {
     this.till.setCustomerName(name);
     console.log(name);
-    // this.display.disableNameInput()
   }
 
   addToCart() {
@@ -17,8 +16,12 @@ class Buttons {
     ) {
       items.push($(selectedItem).val());
     });
-    this.till.order.setBasket(items);
+    this.till.setBasket(items);
     this.displayCartItems();
+    this.cartToBasket();
+    this.displayTotal();
+
+    items.length = 0;
   }
 
   displayCartItems() {
@@ -36,6 +39,21 @@ class Buttons {
       .find("option")
       .remove()
       .end();
+    this.displayTotal();
+  }
+
+  cartToBasket() {
+    let items = [];
+    $("#cart-with-items option").each(function(indexOfItem, selectedItem) {
+      console.log($(selectedItem).val());
+      items.push($(selectedItem).val());
+    });
+    this.till.setBasket(items);
+  }
+
+  displayTotal() {
+    let basket = this.till.getBasket();
+    $("#total-text-area").val(this.till.getGrandTotal(basket));
   }
 }
 
